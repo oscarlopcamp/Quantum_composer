@@ -1,2 +1,2 @@
 # Quantum_composer
-Local Quantum Circuit Composer and Visualizer built in Python using Qiskit and PyQt5. Designed for offline educational use to simulate and explore quantum gates, circuits, and Bloch sphere representations.
+An interactive and offline educational tool to build and visualize quantum circuits locally. Built with Python, Qiskit, and PyQt5, this quantum composer enables users to apply quantum gates, view circuit diagrams, simulate measurement outcomes, and explore qubit states using Bloch spheres and histograms — all without internet access.
