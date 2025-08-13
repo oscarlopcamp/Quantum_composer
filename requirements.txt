@@ -1,5 +1,7 @@
-numpy==1.24.4
+numpy>=1.26
 qiskit==0.45.0
 qiskit-aer==0.13.3
 pyqt5==5.15.11
 matplotlib==3.8.4
+pylatexenc>=2.10
+seaborn>=0.13
