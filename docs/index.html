@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quantum Composer Demo</title>
+  <meta name="description" content="Demo web de Quantum Composer: arma circuitos cuánticos y visualiza la esfera de Bloch, el histograma de mediciones y el vector de estado.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div>
+      <h1>Quantum Composer <span class="etiqueta-demo">DEMO WEB</span></h1>
+      <p class="subtitulo">Compositor y visualizador educativo de circuitos cuánticos</p>
+    </div>
+    <button id="boton-info" class="boton-secundario" type="button">ℹ️ Info del software</button>
+  </header>
+
+  <div class="aviso" role="note">
+    <strong>⚠️ Esto es solo una demo.</strong>
+    Sirve para que veas de qué trata el proyecto. Aquí la simulación corre en JavaScript dentro del navegador.
+    La versión completa es la aplicación de escritorio (PyQt5 + Qiskit Aer): para usarla tienes que clonar el repositorio,
+    crear un entorno virtual, instalar las dependencias y ejecutar <code>python main.py</code>.
+    <a href="#version-completa">Ver instrucciones de instalación ↓</a>
+  </div>
+
+  <main class="distribucion">
+    <aside class="panel controles">
+      <h2>Operaciones Cuánticas</h2>
+
+      <label for="selector-qubit">Aplicar a qubit:</label>
+      <select id="selector-qubit"></select>
+
+      <div id="rejilla-compuertas" class="rejilla-compuertas"></div>
+
+      <fieldset class="cx">
+        <legend>CX (CNOT)</legend>
+        <label for="cx-control">Control</label>
+        <select id="cx-control"></select>
+        <label for="cx-objetivo">Objetivo</label>
+        <select id="cx-objetivo"></select>
+        <p id="cx-nota" class="nota"></p>
+      </fieldset>
+
+      <div class="acciones">
+        <button id="agregar-qubit" type="button">➕ Agregar Qubit</button>
+        <button id="eliminar-qubit" type="button">➖ Eliminar Qubit</button>
+        <button id="deshacer" type="button">↩️ Remover última compuerta</button>
+        <button id="reiniciar" type="button">🗑️ Limpiar circuito</button>
+      </div>
+
+      <h3>Ejemplos rápidos</h3>
+      <div class="ejemplos">
+        <button type="button" data-ejemplo="superposicion">Superposición</button>
+        <button type="button" data-ejemplo="bell">Estado de Bell</button>
+        <button type="button" data-ejemplo="ghz">GHZ (3 qubits)</button>
+      </div>
+    </aside>
+
+    <section class="contenido">
+      <div class="panel">
+        <h2>Circuito Generado</h2>
+        <div class="desplazable"><svg id="circuito" role="img" aria-label="Diagrama del circuito"></svg></div>
+      </div>
+
+      <div class="panel">
+        <h2>Resultados Cuánticos y Estado Cuántico</h2>
+
+        <h3>Esfera de Bloch por qubit</h3>
+        <div id="esferas" class="esferas"></div>
+        <p class="nota">Si la flecha no llega a la superficie, ese qubit está entrelazado con otros.</p>
+
+        <div class="fila-titulo">
+          <h3>Histograma de mediciones (<span id="shots"></span> shots)</h3>
+          <button id="volver-medir" class="boton-secundario" type="button">🎲 Medir de nuevo</button>
+        </div>
+        <div class="desplazable"><svg id="histograma" role="img" aria-label="Histograma de mediciones"></svg></div>
+
+        <h3>Vector de estado</h3>
+        <table class="tabla-estado">
+          <thead><tr><th>Estado</th><th>Amplitud</th><th>Probabilidad</th></tr></thead>
+          <tbody id="tabla-estado"></tbody>
+        </table>
+        <p class="nota">Orden de Qiskit: el qubit 0 es el bit de la derecha en |q<sub>n-1</sub>…q<sub>0</sub>⟩.</p>
+      </div>
+    </section>
+  </main>
+
+  <section id="version-completa" class="panel instalacion">
+    <h2>Cómo usar la versión completa</h2>
+    <p>
+      Esta página es solo una demo. La aplicación completa usa PyQt5 y Qiskit, simula con Qiskit Aer, dibuja la
+      qsphere y exporta imágenes del circuito. Necesitas Python 3.12.
+    </p>
+    <ol>
+      <li>Clona el repositorio:
+        <pre><code>git clone https://github.com/oscarlopcamp/Quantum_composer.git
+cd Quantum_composer</code></pre>
+      </li>
+      <li>Crea y activa un entorno virtual:
+        <pre><code># Windows (PowerShell)
+py -3.12 -m venv .venv
+.venv\Scripts\Activate.ps1
+
+# macOS / Linux
+python3.12 -m venv .venv
+source .venv/bin/activate</code></pre>
+      </li>
+      <li>Instala las dependencias:
+        <pre><code>python -m pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt</code></pre>
+      </li>
+      <li>Ejecuta la aplicación:
+        <pre><code>python main.py</code></pre>
+      </li>
+    </ol>
+    <p><a href="https://github.com/oscarlopcamp/Quantum_composer">Ver el repositorio en GitHub →</a></p>
+  </section>
+
+  <footer class="pie">
+    Oscar Alejandro López Campero · CENIDET · Licencia MIT
+  </footer>
+
+  <dialog id="dialogo-info">
+    <h2>Información del software</h2>
+    <p><strong>Quantum Composer</strong></p>
+    <p>Software educativo para visualización cuántica desarrollado por:<br>Oscar Alejandro López Campero</p>
+    <p>Centro Nacional de Investigación y Desarrollo Tecnológico (CENIDET)</p>
+    <p class="nota">Esta es una demo web. La versión completa se instala y ejecuta localmente con Python.</p>
+    <form method="dialog"><button type="submit">Cerrar</button></form>
+  </dialog>
+
+  <script src="simulador.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

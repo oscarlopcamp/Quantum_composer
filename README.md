@@ -2,6 +2,14 @@
 
 An offline Python-based quantum circuit composer and visualizer built with PyQt5 and Qiskit.
 
+## 🌐 Online demo (demo only)
+
+**[Try the web demo →](https://oscarlopcamp.github.io/Quantum_composer/)**
+
+The web demo lets you see what the project is about without installing anything: build a circuit, then view the Bloch sphere for each qubit, a measurement histogram, and the state vector. **It is only a demo.** It runs a small JavaScript simulator in the browser and does not use Qiskit. To use the full application (PyQt5 + Qiskit Aer, qsphere, image export), follow the [Installation & Run](#installation--run) steps below: create a virtual environment, install the requirements and run `python main.py`.
+
+The demo source lives in [`docs/`](docs/) and is served with GitHub Pages.
+
 ## Features
 
 - Add/remove qubits

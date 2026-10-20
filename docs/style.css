@@ -1,0 +1,234 @@
+:root {
+  --fondo: #eef3f7;
+  --panel: #ffffff;
+  --panel-suave: #f4f8fb;
+  --borde: #d0d8e0;
+  --texto: #1d2733;
+  --texto-suave: #5a6775;
+  --acento: #3366cc;
+  --aviso-fondo: #fff6dd;
+  --aviso-borde: #e8c35a;
+  --cable: #6b7785;
+  --esfera: #9aa6b2;
+  --vector: #d6336c;
+  --barra: #3366cc;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fondo: #12171d;
+    --panel: #1b222b;
+    --panel-suave: #222a34;
+    --borde: #33404d;
+    --texto: #e4e9ee;
+    --texto-suave: #9aa7b4;
+    --acento: #7aa2ff;
+    --aviso-fondo: #3a3018;
+    --aviso-borde: #8a7230;
+    --cable: #8d99a6;
+    --esfera: #5f6b78;
+    --vector: #ff6b9a;
+    --barra: #7aa2ff;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --fondo: #12171d;
+  --panel: #1b222b;
+  --panel-suave: #222a34;
+  --borde: #33404d;
+  --texto: #e4e9ee;
+  --texto-suave: #9aa7b4;
+  --acento: #7aa2ff;
+  --aviso-fondo: #3a3018;
+  --aviso-borde: #8a7230;
+  --cable: #8d99a6;
+  --esfera: #5f6b78;
+  --vector: #ff6b9a;
+  --barra: #7aa2ff;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 16px 24px;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+h1 { font-size: 1.5rem; margin: 0; }
+h2 { font-size: 1rem; margin: 0 0 12px; }
+h3 { font-size: 0.9rem; margin: 18px 0 8px; color: var(--texto-suave); }
+a { color: var(--acento); }
+code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; }
+
+.encabezado {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 0 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.subtitulo { margin: 2px 0 0; color: var(--texto-suave); }
+.etiqueta-demo {
+  font-size: 0.7rem;
+  vertical-align: middle;
+  background: var(--aviso-borde);
+  color: #1d2733;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+.aviso {
+  max-width: 1280px;
+  margin: 0 auto 16px;
+  padding: 12px 16px;
+  background: var(--aviso-fondo);
+  border: 1px solid var(--aviso-borde);
+  border-radius: 8px;
+}
+
+.distribucion {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.contenido { display: grid; gap: 16px; min-width: 0; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 16px;
+  min-width: 0;
+}
+.controles { background: var(--panel-suave); }
+.controles label { display: block; font-size: 0.85rem; margin: 6px 0 4px; }
+
+select, button {
+  font: inherit;
+  color: inherit;
+}
+select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--panel);
+}
+button {
+  padding: 7px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--panel);
+  cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--acento); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+.boton-secundario { font-size: 0.85rem; }
+
+.rejilla-compuertas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 12px 0;
+}
+.compuerta {
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  height: 38px;
+}
+.compuerta:hover:not(:disabled) { filter: brightness(1.15); }
+
+.cx {
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 4px 10px 10px;
+  margin: 0 0 12px;
+}
+.cx legend { font-size: 0.85rem; font-weight: 600; padding: 0 4px; }
+
+.acciones, .ejemplos { display: grid; gap: 6px; }
+.acciones button, .ejemplos button { text-align: left; }
+
+.nota { font-size: 0.8rem; color: var(--texto-suave); margin: 6px 0 0; }
+
+.desplazable { overflow-x: auto; }
+#circuito, #histograma { display: block; }
+
+.cable { stroke: var(--cable); stroke-width: 1.5; }
+.etiqueta-cable { fill: var(--texto); font-size: 14px; font-family: ui-monospace, Menlo, monospace; }
+.texto-compuerta { fill: #fff; font-size: 13px; font-weight: bold; font-family: system-ui, sans-serif; }
+.texto-svg { fill: var(--texto-suave); font-size: 12px; font-family: system-ui, sans-serif; }
+.texto-svg-fuerte { fill: var(--texto); font-size: 12px; font-family: system-ui, sans-serif; }
+
+.esferas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+}
+.esfera { text-align: center; }
+.esfera svg { width: 100%; max-width: 200px; height: auto; }
+.esfera .titulo { font-weight: 600; font-size: 0.85rem; }
+.esfera .coords { font-size: 0.75rem; color: var(--texto-suave); font-family: ui-monospace, Menlo, monospace; }
+.contorno { fill: none; stroke: var(--esfera); stroke-width: 1.2; }
+.trasero { fill: none; stroke: var(--esfera); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.7; }
+.frontal { fill: none; stroke: var(--esfera); stroke-width: 1; }
+.eje { stroke: var(--esfera); stroke-width: 0.8; }
+.vector { stroke: var(--vector); stroke-width: 3; stroke-linecap: round; }
+.punta { fill: var(--vector); }
+.barra { fill: var(--barra); }
+
+.fila-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.fila-titulo h3 { margin: 0; }
+
+.tabla-estado { border-collapse: collapse; width: 100%; max-width: 520px; font-size: 0.85rem; }
+.tabla-estado th, .tabla-estado td { padding: 5px 8px; border-bottom: 1px solid var(--borde); text-align: left; }
+.tabla-estado td { font-family: ui-monospace, Menlo, monospace; }
+
+.instalacion { max-width: 1280px; margin: 16px auto 0; }
+.instalacion pre {
+  background: var(--panel-suave);
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: 10px;
+  overflow-x: auto;
+}
+.instalacion li { margin-bottom: 8px; }
+
+.pie { text-align: center; color: var(--texto-suave); font-size: 0.8rem; margin-top: 20px; }
+
+dialog {
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--texto);
+  max-width: min(420px, calc(100vw - 32px));
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.4); }
+
+@media (max-width: 760px) {
+  .distribucion { grid-template-columns: minmax(0, 1fr); }
+}
